@@ -1,0 +1,14 @@
+[package]
+name = "resp3string"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+python = ["pyo3"]
+default = []
