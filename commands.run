@@ -1,0 +1,16 @@
+# PYTHON
+cargo clean
+pip uninstall resp3string -y
+rm -rf env/lib/python3.9/site-packages/resp3string
+maturin develop --bindings pyo3 -v
+cargo tree
+maturin develop
+python test_redis.py
+
+# JAVA
+cargo clean
+cargo build --release --features java
+javac TestRedis.java
+javap -s TestRedis
+java -Djava.library.path=target/release TestRedis
+
