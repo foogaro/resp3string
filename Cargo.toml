@@ -4,11 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
+pyo3 = { version = "0.19.2", features = ["extension-module"] }
+
+[package.metadata.maturin]
+bindings = "pyo3"
 
 [lib]
 crate-type = ["cdylib"]
 
 [features]
-python = ["pyo3"]
 default = []

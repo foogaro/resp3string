@@ -1,8 +1,8 @@
-#[cfg(feature = "python")]
 mod python_bindings {
     use std::net::TcpStream;
     use pyo3::exceptions::PyRuntimeError;
     use pyo3::prelude::*;
+    use crate::resp3::commands::get::GetCommand;
     use crate::resp3::commands::set::SetCommand;
     use crate::resp3::utils::command::Command;
     use crate::resp3::utils::redis_connection::RedisConnection;
@@ -53,10 +53,30 @@ mod python_bindings {
         }
     }
 
+    #[pyclass]
+    pub struct PyGetCommand {
+        command: GetCommand,
+    }
+
+    #[pymethods]
+    impl PyGetCommand {
+        #[new]
+        pub fn new(key: String) -> Self {
+            PyGetCommand {
+                command: GetCommand::new(key),
+            }
+        }
+
+        pub fn execute(&self, conn: &mut PyRedisConnection) -> PyResult<String> {
+            Ok(self.command.process_command(&mut conn.conn))
+        }
+    }
+
     #[pymodule]
-    fn rust_redis(_py: Python, m: &PyModule) -> PyResult<()> {
+    fn resp3string(_py: Python, m: &PyModule) -> PyResult<()> {
         m.add_class::<PyRedisConnection>()?;
         m.add_class::<PySetCommand>()?;
+        m.add_class::<PyGetCommand>()?;
         Ok(())
     }
 }

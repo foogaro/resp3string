@@ -2,7 +2,6 @@
 
 pub mod resp3 {
     pub mod bindings {
-        #[cfg(feature = "python")]
         mod python_3;
     }
     pub mod commands {
@@ -80,4 +79,3 @@ mod tests {
         assert_eq!(get_response.trim(), String::new() + BULK_STRING_PREFIX + &test_value.len().to_string() + CRLF + &test_value.to_uppercase());
     }
 }
-
