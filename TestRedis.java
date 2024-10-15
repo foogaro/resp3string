@@ -1,7 +1,7 @@
 public class TestRedis {
     static {
         // Load the Rust shared library (.so/.dll/.dylib depending on your OS)
-        System.loadLibrary("resp3string.so");
+        System.loadLibrary("resp3string");
     }
 
     // Native methods for interacting with the Rust library
@@ -13,7 +13,7 @@ public class TestRedis {
 
     // Example usage
     public static void main(String[] args) {
-        RustRedis rustRedis = new RustRedis();
+        TestRedis rustRedis = new TestRedis();
 
         // Step 1: Create RedisConnection
         long conn = rustRedis.createRedisConnection("127.0.0.1:6379");
