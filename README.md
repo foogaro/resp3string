@@ -207,7 +207,7 @@ This avoids the need to rewrite the same logic in different languages, reducing 
 
 In my case, I'm creating modules like `java_21` and `python_3` under the `bindings` directory.
 These modules will contain the code necessary to expose your Rust library's functionality to Java and Python.
-Using tools like JNI (Java Native Interface) for Java and PyO3 for Python, you can create these bindings so that developers using your library in Java or Python can call the underlying Rust functions without worrying about the details of Rust itself.
+Using tools like JNI (Java Native Interface) for Java and PyO3 for Python, I create these bindings so that using my library in Java or Python can call the underlying Rust functions without worrying about the details of Rust itself.
 
 ## Java binding
 ```java
