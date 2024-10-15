@@ -512,7 +512,7 @@ maturin develop --bindings pyo3
 
 This process generates the `resp3string.cpython-39-x86_64-linux-gnu.so` library in the `env/lib/python3.9/site-packages/resp3string` folder. This library is the key component that needs to be loaded by the Python interpreter in order to interface with and execute the Rust code.
 
-Here’s what you need to do on the Java side to interact with the Rust library:
+Here’s what you need to do on the Python side to interact with the Rust library:
 
 ```python
 from resp3string import PyRedisConnection, PySetCommand, PyGetCommand
