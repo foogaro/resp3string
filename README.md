@@ -12,9 +12,6 @@ Since I work for Redis, it’s hard to imagine running an experiment that isn’
 
 # Core logic
 
-The implementation needs to be portable, so I considered using either Golang or Rust. Since I’ve already worked with Golang but haven’t had the chance to explore Rust yet, I decided to go with Rust to start learning something new.
-
-
 The implementation should be highly portable, allowing it to run efficiently across various platforms and environments without needing significant changes to the codebase.
 With that in mind, I focused on languages known for their portability and performance, like Golang and Rust, both of which are ideal for building cross-platform libraries that maintain speed and reliability.
 Since I’ve already worked with Golang but haven’t had the chance to explore Rust yet, I decided to go with Rust to start learning something new.
