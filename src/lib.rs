@@ -2,6 +2,9 @@
 
 pub mod resp3 {
     pub mod bindings {
+        #[cfg(feature = "java")]
+        mod java_21;
+        #[cfg(feature = "python")]
         mod python_3;
     }
     pub mod commands {
