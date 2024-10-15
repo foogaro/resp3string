@@ -4,15 +4,21 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-pyo3 = { version = "0.19.2", features = ["extension-module"] }
-jni = "0.19"
+pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
+jni = { version = "0.19", optional = true }
 
-
-[package.metadata.maturin]
-bindings = "pyo3"
+# [package.metadata.maturin]
+# bindings = "pyo3"
 
 [lib]
 crate-type = ["cdylib"]
 
 [features]
+# Define the `python` feature for PyO3
+python = ["pyo3"]
+
+# Define the `java` feature for JNI
+java = ["jni"]
+
+# Define a feature that enables both Python and Java bindings
 default = []
