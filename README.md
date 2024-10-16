@@ -1,3 +1,7 @@
+# DISCLAIMER
+
+This is purely a test. It’s crucial that you perform your own analysis, design your own solution, and implement it according to your needs. Do not use this code in production—it’s meant purely as an experiment.
+
 # resp3string
 
 RESP, which stands for *RE*dis *S*erialization *P*rotocol, is the communication protocol used by clients to interact with a Redis server.
@@ -567,3 +571,10 @@ Dropping RedisConnection...
 
 And once again, the key MYKEY and value MYVALUE are stored in uppercase, just as defined by the Rust implementation.
 
+# Conclusion
+
+This project was simply an experiment to explore how a core library, written in one programming language, can be exposed through bindings to multiple languages.
+
+To clarify, there are certainly better design patterns and approaches for this kind of task.
+
+The RESP protocol implementation in this experiment is minimal; I only created a basic parser for the SET and GET commands for simplicity.
