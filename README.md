@@ -509,14 +509,72 @@ The same process applies when using Python.
 
 ## Python
 
+To prepare the environment for Python development and ensures all dependencies are properly managed, follow these steps:
+
+```bash
+python -m venv env
+source env/bin/activate
+pip install maturin
+```
+
+When executed, you should see a response similar to this:
+
+```bash
+Collecting maturin
+  Using cached maturin-1.7.4-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.musllinux_1_1_x86_64.whl (8.9 MB)
+Collecting tomli>=1.1.0
+  Using cached tomli-2.0.2-py3-none-any.whl (13 kB)
+Installing collected packages: tomli, maturin
+Successfully installed maturin-1.7.4 tomli-2.0.2
+```
+
+And then you can finally build the python module
+
 ```bash
 cargo clean
 maturin develop --bindings pyo3
 ```
 
-This process generates the `resp3string.cpython-39-x86_64-linux-gnu.so` library in the `env/lib/python3.9/site-packages/resp3string` folder. This library is the key component that needs to be loaded by the Python interpreter in order to interface with and execute the Rust code.
+When executed, you should see a response similar to this:
 
-Here’s what you need to do on the Python side to interact with the Rust library:
+```bash
+(env) root@foogaro-demo:~/resp3string# cargo clean
+     Removed 398 files, 170.3MiB total
+(env) root@foogaro-demo:~/resp3string# maturin develop --bindings pyo3
+🔗 Found pyo3 bindings
+🐍 Found CPython 3.9 at /root/resp3string/env/bin/python
+   Compiling target-lexicon v0.12.16
+   Compiling autocfg v1.4.0
+   Compiling once_cell v1.20.2
+   Compiling proc-macro2 v1.0.87
+   Compiling unicode-ident v1.0.13
+   Compiling libc v0.2.159
+   Compiling syn v1.0.109
+   Compiling parking_lot_core v0.9.10
+   Compiling scopeguard v1.2.0
+   Compiling smallvec v1.13.2
+   Compiling cfg-if v1.0.0
+   Compiling indoc v1.0.9
+   Compiling unindent v0.1.11
+   Compiling lock_api v0.4.12
+   Compiling memoffset v0.9.1
+   Compiling pyo3-build-config v0.19.2
+   Compiling quote v1.0.37
+   Compiling parking_lot v0.12.3
+   Compiling pyo3-ffi v0.19.2
+   Compiling pyo3 v0.19.2
+   Compiling pyo3-macros-backend v0.19.2
+   Compiling pyo3-macros v0.19.2
+   Compiling resp3string v0.1.0 (/root/resp3string)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 12.16s
+📦 Built wheel for CPython 3.9 to /tmp/.tmpSmcJbi/resp3string-0.1.0-cp39-cp39-linux_x86_64.whl
+✏️  Setting installed package as editable
+🛠 Installed resp3string-0.1.0
+```
+
+This process generates the `resp3string.cpython-39-x86_64-linux-gnu.so` library in the `env/lib/python3.9/site-packages/resp3string` folder. This package is the key component that needs to be imported from the Python code in order to interface with and execute the Rust code.
+
+Here’s the Python code to interact with the Rust library:
 
 ```python
 from resp3string import PyRedisConnection, PySetCommand, PyGetCommand
